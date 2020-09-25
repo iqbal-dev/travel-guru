@@ -18,22 +18,31 @@ const LogIn = () => {
     }
     const{ userElement } = useContext(Context); 
     const [user, setUser] = userElement;
-    const handleSubmit = () => {
-        firebase.auth().signInWithEmailAndPassword(user.email.trim(), user.password)
-            .then(() => {
-                console.log('successfully logged');
-                history.replace(from);
-            })
-            .catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
+    
+    console.log(user)
+    const handleLogIn = (e) => {
+        if (user.email && user.password) {
+            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+                .then((res) => {
+            console.log(res)
+            const newUserInfo = { ...user };
+            newUserInfo.error = "";
+            setUser(newUserInfo);
+            history.replace(from)
+            console.log('user created')
+        })
+        .catch(error=> {
+        // Handle Errors here.
             var errorMessage = error.message;
-            console.log(errorMessage,errorCode)
-            // ...
-        });
-    }
-    const handleLogIn = () => {
-        history.push('/hotel')
+            console.log(errorMessage)
+        const newError = { ...user };
+          newError.error = errorMessage;
+          newError.success = '';
+        setUser(newError);
+        // ...
+      });
+        }
+      e.preventDefault();
     }
     return (
         <div style={{ align: 'center' }}>
@@ -41,20 +50,12 @@ const LogIn = () => {
             <div id="form">
                 <div style={{ margin: '20px 50px' }}>
                     <h3>Log In</h3>
-                    <form action="" onClick= {handleSubmit}>
+                    <form onSubmit={handleLogIn}>
                         
-                        <input type="text" name="" id="" placeholder="Username or Email" />
-                        <input type="password" name="" id="" placeholder="password"/>
-                            <div className="row" >
-                                <div className="col-md-6">
-                                <input type="checkbox"className="checkBox" name="" id="remember" />
-                                <label htmlFor="remember"> Remember Me</label>  
-                                </div>
-                                <div className="col-md-6" style={{marginTop:'20px'}}>
-                                <Link to ="forget" style={{color:'#F9A51A'}}>Forget Password</Link>
-                                </div>
-                            </div>  
-                        <input onClick={handleLogIn} type="button" value="Log In" />
+                        <input type="email" name="email"  id="" placeholder="Username or Email" />
+                        <input type="password" name="password" id="" placeholder="password"/>
+                          
+                        <input  type="submit" value="Log In" />
                             <span>Don't have an Account? </span>
                             <Link style={{ color: '#F9A51A' }} to="/create">Create a new account</Link>
                     </form>

@@ -3,13 +3,18 @@ import { Button, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-boots
 import "../Nav/NavBar.css";
 import "./NavBars.css"
 import Logo from '../../Image/Logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const NavBars = () => {
+    const history = useHistory();
+    
+    const handleHome = () => {
+        history.push("/home")
+    }
 
     return (
         <Navbar bg="transparent " expand="lg" className="navStyle">
-            <Navbar.Brand className="logo" href="#home"><img src={Logo} alt=""/></Navbar.Brand>
+            <Navbar.Brand className="logo" onClick={handleHome}><img src={Logo} alt=""/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
                 

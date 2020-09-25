@@ -22,7 +22,7 @@ form input{
     padding:10px;
     font-weight: 700;
 }
-input[type="button"]:hover{
+input[type="submit"]:hover{
     background: #F9A51A;
     transition: .5s
 }

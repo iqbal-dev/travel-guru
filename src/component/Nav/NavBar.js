@@ -2,21 +2,24 @@ import React, { useState } from 'react';
 import { Button, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import "./NavBar.css";
 import Logo from '../../Image/Logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const NavBar = () => {
- 
+    const history = useHistory();
     const [state, setState] = useState({});
     const handleChange = (event) => {
         setState({ value: event.target.value });
         event.preventDefault();
 
     }
+    const handleHome = () => {
+        history.push("/home")
+    }
     console.log(state)
 
     return (
         <Navbar bg="transparent " expand="lg" className="navStyle">
-            <Navbar.Brand className="logo" href="#home"><img className="img" src={Logo} alt=""/></Navbar.Brand>
+            <Navbar.Brand className="logo" onClick={handleHome}><img className="img" src={Logo} alt=""/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
                 

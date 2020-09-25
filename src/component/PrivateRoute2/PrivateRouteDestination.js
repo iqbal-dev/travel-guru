@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { Context } from '../../App';
 
-const PrivateRoute = ({children, ...rest}) => {
+const PrivateRouteDestination = ({children, ...rest}) => {
     const { userElement } = useContext(Context);
-    const [user] = userElement;
+    const [user, setUser] = userElement;
     return (
         <Route
             {...rest}
@@ -14,7 +14,7 @@ const PrivateRoute = ({children, ...rest}) => {
                 ) : (
                 <Redirect
                     to={{
-                    pathname: "/login",
+                    pathname: "/booking/:id",
                     state: { from: location }
                     }}
                 />
@@ -24,4 +24,4 @@ const PrivateRoute = ({children, ...rest}) => {
     );
 };
 
-export default PrivateRoute;
+export default PrivateRouteDestination;

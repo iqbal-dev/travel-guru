@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import "./LoginWithOther.css";
@@ -6,22 +6,26 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../firebase.config';
 import { useHistory, useLocation } from 'react-router-dom';
+import { Context } from '../../App';
 
 const LoginWithOther = () => {
+    const { userElement } = useContext(Context);
+    const [user, setUser] = userElement;
     const history = useHistory();
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
-    const provider = new firebase.auth.GoogleAuthProvider();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
     const facebookProvider = new firebase.auth.FacebookAuthProvider();
     const handleGoogleLogin = () => {
-        firebase.auth().signInWithPopup(provider)
-            .then( (result) => {
-                var user = result.user;
+        firebase.auth().signInWithPopup(googleProvider)
+            .then((result) => {
+            const { displayName,email } = result.user;
+            const signedInUser = { name: displayName,email };
+            setUser(signedInUser);
                 history.replace(from);
-            console.log('successfully logged')
           }).catch(function(error) {
               var errorMessage = error.message;
               console.log(errorMessage);
@@ -29,13 +33,13 @@ const LoginWithOther = () => {
     }
     const handleFacebookLogin = () => {
         firebase.auth().signInWithPopup(facebookProvider)
-            .then( (result) => {
-            var user = result.user;
-            console.log(user)
+            .then((result) => {
+                console.log(result.user)
+                    history.replace(from);
           }).catch(function(error) {
               var errorMessage = error.message;
-              console.log(errorMessage);
           });
+        
     }
     return (
         <div>

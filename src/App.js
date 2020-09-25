@@ -11,23 +11,28 @@ import LogIn from './component/LogIn/LogIn';
 import SignUp from './component/SignUp/SignUp';
 import Hotel from './component/Hotel/Hotel';
 import PrivateRoute from './component/PrivateRoute/PrivateRoute';
+import NoMatch from './component/NoMatch/NoMatch';
+import News from './component/News/News';
+import PrivateRouteDestination from './component/PrivateRoute2/PrivateRouteDestination';
 export const Context = createContext()
 function App() {
   const [indexId, setIndexId] = useState(0);
   const [user, setUser] = useState({
     name1: '',
     name2: '',
-    displayName: function () {
-      return this.name1 + this.name2;
-    },
     email: '',
     password: '',
     photo: '',
+    error: '',
   })
+ 
   return (
-    <Context.Provider value={{idNo:[indexId, setIndexId],userElement:[user, setUser]}} >
-            <Router>
-      <Switch>
+    <Context.Provider value={{ idNo: [indexId, setIndexId], userElement: [user, setUser] }} >
+      <Router>
+        <Switch>
+          <Route path="/home">
+            <HomePage></HomePage>
+          </Route>
         <Route path="/booking/:id">
           <Booking></Booking>
           </Route>
@@ -52,8 +57,17 @@ function App() {
           <Route exact path="/">
             <HomePage></HomePage>
           </Route>
-          <Route >
-
+          <Route path="/news">
+            <News></News>
+          </Route>
+          <PrivateRoute path="/destination">
+            <Booking></Booking>
+          </PrivateRoute>
+          <PrivateRoute path="/contact">
+            
+          </PrivateRoute>
+          <Route path="*">
+            <NoMatch></NoMatch>
           </Route>
       </Switch>
         </Router>

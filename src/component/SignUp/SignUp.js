@@ -27,6 +27,8 @@ const SignUp = () => {
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo);
+        } else {
+            alert(' enter a password more then 6 ,one capital,small and special character')
         }
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
@@ -40,18 +42,23 @@ const SignUp = () => {
     
     const handleSubmit = (e) => {
         if (user.email && user.password) {
-            firebase.auth().createUserWithEmailAndPassword(user.email.trim(), user.password)
-            .then(response => {
-                console.log(response);
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+                .then(result => {
+                    
+                const newUserInfo = { ...user };
+                    newUserInfo.error = "";
+                    setUser(newUserInfo)
+                    console.log('user created')
             })
             
             .catch(function (error) {
             // Handle Errors here.
-            var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorMessage)
+                const newUserInfo = { ...user };
+                newUserInfo.error = error.message;
+                setUser(newUserInfo)
             // ...
-          });
+            });
+            history.push("/login")
         }
         e.preventDefault();
     }
@@ -64,13 +71,13 @@ const SignUp = () => {
                     <p>Email : {user.email}</p>
                     <p>password: {user.password}</p>
                     <p>name: {user.name}</p>
-                    <form action="" onClick={handleSubmit}>
+                    <p style={{color:'red'}}>{user.error}</p>
+                    <form action="" onSubmit={handleSubmit}>
                         <input type="text"  onBlur={onBlur} name="name1" placeholder="FirstName" required />
                         <input type="text" required onBlur={onBlur} name="name2" placeholder="LastNAme" />
                         <input type="email" required onBlur={onBlur} name="email" placeholder="Your Email " />
                         <input type="password" required onBlur={onBlur} name="password" placeholder="Password" />
-                        <input type="password" required onBlur={onBlur} name="confirmPassword" placeholder="Confirm Password" />
-                        <input onClick={handleCreate} type="submit" value="Create Account" />
+                        <input onSubmit={handleCreate} type="submit" value="Create Account" />
                         <span>Already have an account?</span>
                         
                         <Link style={{ color: '#F9A51A' }} to="/signup/login">Log in</Link>
