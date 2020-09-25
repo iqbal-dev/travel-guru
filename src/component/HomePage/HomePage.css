@@ -1,0 +1,72 @@
+.home-page{
+    background: url(../../Image/Rectangle\ 1.png);
+    height:100vh;
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-blend-mode:color-burn;
+    width: 100%;
+    padding:0;
+    margin: 0;
+}
+.placeDetails{
+    width: 80%;
+    color: white;
+}
+.placeDetails h1{
+width: 378.53px;
+height: 116px;
+left: 135px;
+top: 236px;
+font-family: Bebas Neue;
+font-style: normal;
+font-weight: normal;
+font-size: 97.6842px;
+line-height: 117px;
+color: #FFFFFF;
+}
+.placeDetails p{
+width: 455px;
+height: 80px;
+left: 135px;
+top: 350px;
+font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+color: #FFFFFF;
+
+}
+.details{
+margin-left: 200px;
+margin-top: 100px;
+}
+.placeDetails button{
+    padding: 12px 29px;
+    border: 1px solid #000000;
+    width: 161px;
+    height: 48px;
+    left: 135px;
+    top: 456px;
+    background: #F9A51A;
+    border-radius: 15px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    background-color: #2622227a;
+  }
+  .carousel{
+      top: 70%;
+      transform: translateY(-50%);
+      right:135px;
+      height: 416px;
+      width: 270px;
+  }
