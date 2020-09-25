@@ -14,6 +14,8 @@ import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 import NoMatch from './component/NoMatch/NoMatch';
 import News from './component/News/News';
 import PrivateRouteDestination from './component/PrivateRoute2/PrivateRouteDestination';
+import Contact from './component/Contact/Contact';
+import Blog from './component/Blog/Blog';
 export const Context = createContext()
 function App() {
   const [indexId, setIndexId] = useState(0);
@@ -64,8 +66,11 @@ function App() {
             <Booking></Booking>
           </PrivateRoute>
           <PrivateRoute path="/contact">
-            
+            <Contact></Contact>
           </PrivateRoute>
+          <Route path="/blog">
+            <Blog></Blog>
+          </Route>
           <Route path="*">
             <NoMatch></NoMatch>
           </Route>

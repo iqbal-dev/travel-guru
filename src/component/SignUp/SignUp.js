@@ -67,10 +67,7 @@ const SignUp = () => {
             <NavBars></NavBars>
             <div id="form">
                 <div style={{ margin: '20px 50px' }}>
-                    <h3>Log In</h3>
-                    <p>Email : {user.email}</p>
-                    <p>password: {user.password}</p>
-                    <p>name: {user.name}</p>
+                    <h3>Log Up</h3>
                     <p style={{color:'red'}}>{user.error}</p>
                     <form action="" onSubmit={handleSubmit}>
                         <input type="text"  onBlur={onBlur} name="name1" placeholder="FirstName" required />
