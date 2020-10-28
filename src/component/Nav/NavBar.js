@@ -12,14 +12,11 @@ const NavBar = () => {
         event.preventDefault();
 
     }
-    const handleHome = () => {
-        history.push("/home")
-    }
     console.log(state)
 
     return (
         <Navbar bg="transparent " expand="lg" className="navStyle">
-            <Navbar.Brand className="logo" onClick={handleHome}><img className="img" src={Logo} alt=""/></Navbar.Brand>
+            <Navbar.Brand className="logo"><Link to="/home"><img className="img-fluid img" src={Logo} alt=""/></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
                 

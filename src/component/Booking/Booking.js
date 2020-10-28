@@ -20,6 +20,8 @@ const Booking = () => {
     history.push("/startbooking")
     e.preventDefault();
   }
+  const date = new Date().toLocaleDateString()
+  console.log(date)
   return (
  
      
@@ -41,12 +43,13 @@ const Booking = () => {
                             <input className="input" required type="text" name="" id="" value={details.heading}/>
                         <div className="row" style={{width:'100%',marginBottom:'50px'}}>
                               <div style={{width:'45%',marginLeft:'15px'}}>
-                              <label htmlFor="">From</label>
-                                  <input className="input" required type="date" name="" id="" placeholder="day/month/year"/>
+                  <label htmlFor="">From</label>
+                  <input className="input" value={date}  required type="date" name="" id=""/>
+                                  
                                </div>
                               <div style={{width: '50%'}}>
                               <label htmlFor="">To</label>
-                                 <input className="input"  required type="date" name="" id=""/>
+                                 <input className="input" value={date}  required type="date" name="" id=""/>
                               </div>        
                           </div>
                         <input  type="submit" value="Start Booking"/>

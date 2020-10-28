@@ -39,32 +39,38 @@ const HomePage = () => {
             <div style={{width: '20%'}}>
                 <Carousel className="carousel"  activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item >
-              <img
-                className="d-block w-100"
-                src={image1}
-                alt="First slide"
-              />
+              <Link to={`/booking/${index}`}>
+                <img
+                  className="d-block w-100"
+                  src={image1}
+                  alt="First slide"
+                />
+              </Link>
               <Carousel.Caption>
                 <h3>SAJEK</h3>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
+              <Link to={`/booking/${index}`}>
               <img
                 className="d-block w-100"
                 src={image2}
                 alt="Second slide"
               />
+              </Link>
 
               <Carousel.Caption>
                 <h3>SREEMONGOL</h3>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={image3}
-                alt="Third slide"
-              />
+              <Link to={`/booking/${index}`}>
+                <img
+                  className="d-block w-100"
+                  src={image3}
+                  alt="Third slide"
+                />
+              </Link>
 
               <Carousel.Caption>
                 <h3>SUNDARBAN</h3>
